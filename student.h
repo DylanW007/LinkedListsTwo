@@ -47,7 +47,7 @@ public:
     float getGpa() { return this->gpa; }
     
     void print() {
-        cout << "student::print(" << id << ", " << this->firstname << " " << this->lastname << ", " << this->gpa << ")" << endl;
+        cout << this->firstname << " " << this->lastname << ", " << id << ", " << fixed << setprecision(2) << this->gpa << endl;
     }
     
 private:
