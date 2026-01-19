@@ -106,6 +106,7 @@ void addStudent(node* &head, student* newStudent) {
 
 node* removeStudent(node* head, int studentId) {
     if (head == nullptr) {
+        cout << "Student with ID " << studentId << " not found." << endl;
         return nullptr;
     }
 
@@ -130,6 +131,11 @@ void deleteStudent(node*& head){ // Including the vector of pointers so remove c
     cout << "Enter ID of student you want to delete: ";
     cin >> removeid;
 
+    if (head == nullptr) {
+        cout << "No students in the list." << endl;
+        return;
+    }
+
     head = removeStudent(head, removeid);
 }
 
@@ -142,7 +148,7 @@ int main(){
     while (run == true) {
         cout << "==================================" << endl;
         cout << "             COMMAND" << endl;           // The main command console in which you will enter
-        cout << "==================================" << endl; // ADD,REMOVE,PRINT, and QUIT to run.
+        cout << "==================================" << endl; // ADD,DELETE,PRINT, and QUIT to run.
         
         cout << "Supported commands: { ADD, DELETE, PRINT, QUIT }\n\nEnter command: ";
         cin >> action;
