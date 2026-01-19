@@ -18,6 +18,7 @@ using namespace std;
 class student
 {
 public:
+    // Default constructor
     student() {
         this->id = -1;
         this->gpa = -1.0;
@@ -25,6 +26,7 @@ public:
         strcpy(this->lastname, "");
     }
     
+    // Convenience constructor
     student(int id, char* first, char* last, float gpa) {
         this->id = id;
         this->gpa = gpa;
@@ -32,8 +34,10 @@ public:
         strcpy(this->lastname, last);
     }
 
+    // Destructor
    ~student() { }
 
+    // Getters and Setters
     void setId(int id) { this->id = id; }
     int  getId() { return this->id; }
 
@@ -51,6 +55,7 @@ public:
     }
     
 private:
+    // Student attributes
     char firstname[20];
     char lastname[20];
     int id;
