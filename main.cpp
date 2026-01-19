@@ -104,6 +104,35 @@ void addStudent(node* &head, student* newStudent) {
      head = insertNodeSorted(head, newNode);
 }
 
+void averageStudentGPA(node* curnode, float& totalGPA, int& count) {
+    // reached end of list
+    if (curnode == nullptr) {
+        return;
+    }
+
+    student* stdt = curnode->getstudent();
+    totalGPA += stdt->getGpa();
+    count++;
+
+    averageStudentGPA(curnode->getnext(), totalGPA, count);
+}
+
+void calculateAverage(node* head) {
+
+    if (head == nullptr) {
+        cout << "No students in the list." << endl;
+        return;
+    }
+
+    float totalGPA = 0.0;
+    int count = 0;
+
+    averageStudentGPA(head, totalGPA, count);
+
+    float averageGPA = totalGPA / count;
+    cout << "Average GPA of students: " << fixed << setprecision(2) << averageGPA << endl;
+}
+
 node* removeStudent(node* head, int studentId) {
     if (head == nullptr) {
         cout << "Student with ID " << studentId << " not found." << endl;
@@ -150,7 +179,7 @@ int main(){
         cout << "             COMMAND" << endl;           // The main command console in which you will enter
         cout << "==================================" << endl; // ADD,DELETE,PRINT, and QUIT to run.
         
-        cout << "Supported commands: { ADD, DELETE, PRINT, QUIT }\n\nEnter command: ";
+        cout << "Supported commands: { ADD, DELETE, PRINT, AVERAGE, QUIT }\n\nEnter command: ";
         cin >> action;
         
         // Uses strcmp to compare the "action". If true it will be 0.
@@ -162,9 +191,11 @@ int main(){
             deleteStudent(head);
         } else if (strcmp(action, "PRINT") == 0) {
             print(head); // Runs print
+        } else if (strcmp(action, "AVERAGE") == 0) {
+            calculateAverage(head); // Runs average            
         } else if (strcmp(action, "QUIT") == 0) {
 
-            cout << "Quitting"; // Runs quit
+            cout << "Quitting" << endl; // Runs quit
             return 1;
         } else{
             cout << "Invalid Action." << endl; // Else if none apply, its invalid.
